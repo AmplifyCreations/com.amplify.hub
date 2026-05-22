@@ -30,10 +30,7 @@ namespace AmplifyHub
 		{
 			GUILayout.Space( 10 );
 
-			GUILayout.Label(
-				"Installed Products",
-				EditorStyles.boldLabel );
-
+			GUILayout.Label( "Installed Products", EditorStyles.boldLabel );
 			foreach ( var p in AmplifyHubRegistry.InstalledProducts() )
 			{
 				DrawInstalled( p );
@@ -42,7 +39,6 @@ namespace AmplifyHub
 			GUILayout.Space( 20 );
 
 			GUILayout.Label( "Available Products", EditorStyles.boldLabel );
-
 			foreach ( var p in m_remote )
 			{
 				if ( !AmplifyHubRegistry.IsInstalled( p.name ) )
@@ -55,32 +51,32 @@ namespace AmplifyHub
 		void DrawInstalled( AmplifyProduct p )
 		{
 			EditorGUILayout.BeginHorizontal( "box" );
-
-			GUILayout.Label( $"{p.Name} ({p.Version})" );
-
-			GUILayout.FlexibleSpace();
-
-			if ( GUILayout.Button( "Open", GUILayout.Width( 80 ) ) )
 			{
-				Debug.Log( $"Open {p.Name}" );
-			}
+				GUILayout.Label( $"{p.Name} ({p.Version})" );
 
+				GUILayout.FlexibleSpace();
+
+				if ( GUILayout.Button( "Open", GUILayout.Width( 80 ) ) )
+				{
+					Debug.Log( $"Open {p.Name}" );
+				}
+			}
 			EditorGUILayout.EndHorizontal();
 		}
 
 		void DrawRemote( RemoteProduct p )
 		{
 			EditorGUILayout.BeginHorizontal( "box" );
-
-			GUILayout.Label( p.name );
-
-			GUILayout.FlexibleSpace();
-
-			if ( GUILayout.Button( "Store", GUILayout.Width( 80 ) ) )
 			{
-				Application.OpenURL( p.url );
-			}
+				GUILayout.Label( p.name );
 
+				GUILayout.FlexibleSpace();
+
+				if ( GUILayout.Button( "Store", GUILayout.Width( 80 ) ) )
+				{
+					Application.OpenURL( p.url );
+				}
+			}
 			EditorGUILayout.EndHorizontal();
 		}
 	}
