@@ -72,7 +72,7 @@ namespace AmplifyHub
 
 				GUILayout.FlexibleSpace();
 
-				if ( GUILayout.Button( "Store", GUILayout.Width( 80 ) ) )
+				if ( GUILayout.Button( p.free ? "FREE" : "Store", GUILayout.Width( 80 ) ) )
 				{
 					Application.OpenURL( p.url );
 				}
