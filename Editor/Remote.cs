@@ -14,6 +14,7 @@ namespace AmplifyHub
 	{
 		public string name;
 		public string url;
+		public bool free;
 	}
 
 	public static class AmplifyHubRemote
