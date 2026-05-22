@@ -1,0 +1,15 @@
+{
+  "name": "com.amplify.hub",
+  "version": "1.0.0",
+  "displayName": "Amplify Hub",
+  "description": "Unified launcher and management window for Amplify assets.",
+  "unity": "2022.3",
+  "documentationUrl": "https://wiki.amplify.pt",
+  "dependencies": { },
+ "keywords": [ ],
+  "author": {
+    "name": "Amplify Creations",
+    "email": "support@amplify.pt",
+    "url": "https://www.amplify.pt"
+  }
+}
