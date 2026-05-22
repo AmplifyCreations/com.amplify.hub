@@ -1,2 +1,2 @@
-# AmplifyHub
-Centralized Hub for all Amplify products, to replace all our Start Screens with a single one.
+# Amplify Hub
+Centralized launcher and manager for Amplify products. A single window to replace all Start Screens.
