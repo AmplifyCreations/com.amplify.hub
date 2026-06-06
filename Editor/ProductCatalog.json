@@ -1,0 +1,86 @@
+[
+  {
+    "name":"Amplify Shader Editor",
+    "shortDescription":"Node-based Shader Creation Tool",
+    "url":"https://assetstore.unity.com/packages/tools/visual-scripting/amplify-shader-editor-68570",
+    "free":false
+  },
+  {
+    "name":"Amplify Impostors",
+    "shortDescription":"1-Click Impostor Creator — Instant Optimization!",
+    "url":"https://assetstore.unity.com/packages/tools/utilities/amplify-impostors-119877",
+    "free":false
+  },
+  {
+    "name":"Amplify Shader Pack",
+    "shortDescription":"180+ shaders for HDRP, URP, and BiRP",
+    "url":"https://assetstore.unity.com/packages/vfx/shaders/amplify-shader-pack-202484",
+    "free":false
+  },
+  {
+    "name":"Amplify Animation Pack",
+    "shortDescription":"Animation collection for characters, vehicles, and combat",
+    "url":"https://assetstore.unity.com/packages/3d/animations/amplify-animation-pack-207911",
+    "free":false
+  },
+  {
+    "name":"Amplify Bundle",
+    "shortDescription":"Includes Amplify Shader Editor, Impostors, and LUT Pack",
+    "url":"https://assetstore.unity.com/packages/tools/visual-scripting/amplify-bundle-173849",
+    "free":false
+  },
+  {
+    "name":"Amplify LUT Pack",
+    "shortDescription":"200+ high-quality color grading LUT presets",
+    "url":"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-lut-pack-50070",
+    "free":false
+  },
+  {
+    "name":"Amplify Scatter FREE",
+    "shortDescription":"Object scatter tool for natural environment distribution",
+    "url":"https://assetstore.unity.com",
+    "free":true
+  },
+  {
+    "name":"Amplify Bloom",
+    "shortDescription":"Simple yet powerful high-fidelity post-process bloom",
+    "url":"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-bloom-53299",
+    "free":true
+  },
+  {
+    "name":"Amplify Occlusion",
+    "shortDescription":"Industry Level Screen Space Ambient Occlusion",
+    "url":"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-occlusion-56739",
+    "free":true
+  },
+  {
+    "name":"Amplify Color",
+    "shortDescription":"Industry Level Color Grading",
+    "url":"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/amplify-color-1894",
+    "free":true
+  },
+  {
+    "name":"Fake Interiors FREE",
+    "shortDescription":"Shader-based fake interior rooms for urban environments",
+    "url":"https://assetstore.unity.com/packages/vfx/shaders/fake-interiors-free-104029",
+    "free":true
+  },
+  {
+    "name":"Street Props - Prototype Collection",
+    "shortDescription":"Free high-quality street props with 4K textures",
+    "url":"https://assetstore.unity.com/packages/3d/props/street-props-prototype-collection-291021",
+    "free":true
+  },
+  {
+    "name":"FXAA Fast Approximate Anti-Aliasing",
+    "shortDescription":"Drag-and-drop post-process anti-aliasing",
+    "url":"https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/fxaa-fast-approximate-anti-aliasing-3590",
+    "free":true
+  },
+  {
+    "name":"Amplify Product",
+    "shortDescription":"Placeholder test product that has a very long short description",
+    "url":"https://amplify.pt",
+    "free":true
+  }
+]

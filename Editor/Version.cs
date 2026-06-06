@@ -3,9 +3,9 @@
 
 namespace AmplifyHub
 {
-	public static class AmplifyHubVersion
+	public static class Version
 	{
-		public const int Version = 1;
+		public const int Number = 1;
 
 		public static bool IsInstalled => true;
 	}
