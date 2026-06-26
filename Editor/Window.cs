@@ -51,6 +51,7 @@ namespace AmplifyHub
 		}
 		private Vector2 m_productListScroll;
 		private Vector2 m_contentScroll;
+		private Vector2 m_homeScroll;
 
 		// Resizable panel widths
 		private float m_leftW;
@@ -76,6 +77,10 @@ namespace AmplifyHub
 		private GUIStyle m_tagLabelStyle;
 		private GUIStyle m_bannerLabelStyle;
 		private GUIStyle m_settingsHeaderStyle;
+		private GUIStyle m_homeSectionTitleStyle;
+		private GUIStyle m_homeBodyStyle;
+		private GUIStyle m_homeProductTitleStyle;
+		private GUIStyle m_homeProductBodyStyle;
 		private bool m_stylesInitialized = false;
 		private bool m_lastProSkin       = false;
 
@@ -199,6 +204,32 @@ namespace AmplifyHub
 				fontSize = 13
 			};
 
+			m_homeSectionTitleStyle = new GUIStyle( EditorStyles.boldLabel )
+			{
+				fontSize  = 22,
+				wordWrap  = false,
+				alignment = TextAnchor.MiddleLeft
+			};
+
+			m_homeBodyStyle = new GUIStyle( EditorStyles.wordWrappedLabel )
+			{
+				fontSize = 13
+			};
+
+			m_homeProductTitleStyle = new GUIStyle( EditorStyles.boldLabel )
+			{
+				fontSize  = 22,
+				wordWrap  = false,
+				alignment = TextAnchor.UpperLeft
+			};
+
+			m_homeProductBodyStyle = new GUIStyle( EditorStyles.label )
+			{
+				fontSize  = 22,
+				wordWrap  = false,
+				alignment = TextAnchor.UpperLeft,
+				normal    = { textColor = proSkin ? new Color( 0.7f, 0.7f, 0.7f ) : new Color( 0.3f, 0.3f, 0.3f ) }
+			};
 
 			m_stylesInitialized = true;
 		}
@@ -518,14 +549,89 @@ namespace AmplifyHub
 
 		private void DrawHomeBanner( float areaW, float areaH )
 		{
-			float marginX    = areaW * 0.05f;
-			float marginY    = areaH * 0.05f;
-			float bannerW    = areaW - 2f * marginX;
-			float bannerH    = areaH * 0.30f;
-			var   bannerRect = new Rect( marginX, marginY, bannerW, bannerH );
+			const float marginX   = 20f;
+			const float marginY   = 20f;
+			const float bannerH   = 180f;
+			const float gap       = 14f;
+			const float btnW      = 120f;
+			const float btnH      = 26f;
+			const float cardH     = 280f;
+			const float cardW     = 280f;
+			const int   cardCols  = 3;
+			const float cardGap   = 20f;
 
+			float innerW  = areaW - 2f * marginX;
+
+			// Total scrollable height: banner + gap + text block + buttons + gap + heading + gap + grid + bottom margin
+			float textH      = 72f;
+			float headingH   = 40f;
+			var   allProducts = new List<Product>( Registry.AllProducts() );
+			float gridRows   = Mathf.Ceil( (float)allProducts.Count / cardCols );
+			float gridH      = gridRows * cardH + Mathf.Max( 0f, gridRows - 1f ) * cardGap;
+			float rowH       = Mathf.Max( btnH, headingH );
+			float totalH     = marginY + bannerH + gap + textH + rowH + gap + gridH + marginY;
+
+			m_homeScroll = GUI.BeginScrollView( new Rect( 0, 0, areaW, areaH ), m_homeScroll, new Rect( 0, 0, areaW - 16f, totalH ), false, false );
+
+			float y = marginY;
+
+			// ── Banner ────────────────────────────────────────────────────────
+			var bannerRect = new Rect( marginX, y, innerW, bannerH );
 			DrawPlaceholderRect( bannerRect, ColorIconBorder, ColorIconPlaceholder );
-			GUI.Label( bannerRect, "Amplify Hub", m_bannerLabelStyle );
+			GUI.Label( bannerRect, "Banner", m_bannerLabelStyle );
+			y += bannerH + gap;
+
+			// ── Body text ─────────────────────────────────────────────────────
+			var textRect = new Rect( marginX, y, innerW, textH );
+			GUI.Label( textRect,
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et " +
+				"dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus " +
+				"vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut " +
+				"labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas " +
+				"accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipi-",
+				m_homeBodyStyle );
+			y += textH;
+
+			// ── Section heading + Buttons on same row ────────────────────────
+			float headingY = y + ( rowH - headingH ) * 0.5f;
+			GUI.Label( new Rect( marginX, headingY, innerW, headingH ), "Let's get started!", m_homeSectionTitleStyle );
+
+			float btnY  = y + ( rowH - btnH ) * 0.5f;
+			float btn2X = marginX + innerW - btnW;
+			float btn1X = btn2X - btnW - 12f;
+			if ( GUI.Button( new Rect( btn1X, btnY, btnW, btnH ), "Link" ) ) {}
+			if ( GUI.Button( new Rect( btn2X, btnY, btnW, btnH ), "Link" ) ) {}
+			y += rowH + gap;
+
+			// ── Product grid ──────────────────────────────────────────────────
+			for ( int i = 0; i < allProducts.Count; i++ )
+			{
+				int   col    = i % cardCols;
+				int   row    = i / cardCols;
+				float cardX  = marginX + col * ( cardW + cardGap );
+				float cardY  = y + row * ( cardH + cardGap );
+				var   card   = new Rect( cardX, cardY, cardW, cardH );
+
+				DrawPlaceholderRect( card, ColorIconBorder, ColorIconPlaceholder );
+
+				float padX = 20f, padY = 20f, lineH = 34f;
+				GUI.Label( new Rect( card.x + padX, card.y + padY,               card.width - padX * 2, lineH * 1.2f ), allProducts[ i ].name,   m_homeProductTitleStyle );
+				GUI.Label( new Rect( card.x + padX, card.y + padY + lineH * 1.5f, card.width - padX * 2, lineH ),        "buttons",               m_homeProductBodyStyle );
+				GUI.Label( new Rect( card.x + padX, card.y + padY + lineH * 2.5f, card.width - padX * 2, lineH ),        "text",                  m_homeProductBodyStyle );
+				GUI.Label( new Rect( card.x + padX, card.y + padY + lineH * 3.5f, card.width - padX * 2, lineH ),        "links",                 m_homeProductBodyStyle );
+			}
+
+			GUI.EndScrollView();
+		}
+
+		private List<Product> GetInstalledProducts()
+		{
+			var result = new List<Product>();
+			foreach ( var p in Registry.AllProducts() )
+			{
+				if ( p.installed ) result.Add( p );
+			}
+			return result;
 		}
 
 		// ── Settings panel ─────────────────────────────────────────────────────
